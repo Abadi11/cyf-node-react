@@ -1,5 +1,5 @@
-const SERVER_PORT = process.env.PORT || 4000;
-const express = require("express");
+const SERVER_PORT = process.env.PORT || 4000; // the name of the local server in my lap; URL
+const express = require("express"); // import express from express 
 const cors = require("cors");
 
 const app = express();

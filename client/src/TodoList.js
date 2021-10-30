@@ -13,6 +13,7 @@ const SERVER = "https://buttery-carbonated-garage.glitch.me";
 
 function TodoList() {
   const [list, setList] = useState([]);
+  const [newItem, setNewItem] = useState("");
 
   useEffect(() => {
     fetch(`${SERVER}/todos`)
@@ -38,10 +39,22 @@ function TodoList() {
     });
   }
 
+  function inputHandler(event){
+    setNewItem(event.target.value);
+    console.log(event.target.value);
+  }
+  const addHandler = () => {
+    // setList(() => [...list, newItem]);
+    // setList(() => list.concat(newItem));
+  };
   return (
     <div>
+      <input type="text" value={newItem} onChange={inputHandler}/>
+      <button onClick={addHandler}>Add</button>
       <ul>
-        <li>render the actual list here!</li>
+        {list.map((item, index) => {
+          return <li key={index}>{item}</li>;
+        })}
       </ul>
     </div>
   );
