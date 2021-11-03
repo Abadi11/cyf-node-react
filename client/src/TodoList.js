@@ -11,12 +11,12 @@ const SERVER = "https://buttery-carbonated-garage.glitch.me";
   Exercise C2.2: Modify the TodoList component to send the name to the fetch uri (POST)
 */
 
-function TodoList() {
+function TodoList(props) {
   const [list, setList] = useState([]);
   const [newItem, setNewItem] = useState("");
 
   useEffect(() => {
-    fetch(`${SERVER}/todos`)
+    fetch(`${SERVER}/${props.name}`)
       .then((res) => res.json())
       .then((list) => {
         console.log("got todolist from server", list);
@@ -34,7 +34,7 @@ function TodoList() {
         value: item,
       }),
     };
-    fetch(`${SERVER}/todos`, requestOptions).then((response) => {
+    fetch(`${SERVER}/${props.name}`, requestOptions).then((response) => {
       console.log("Successfully sent to server", response);
     });
   }
@@ -45,7 +45,8 @@ function TodoList() {
   }
   const addHandler = () => {
     // setList(() => [...list, newItem]);
-    // setList(() => list.concat(newItem));
+    setList(() => list.concat(newItem));
+    sendTodoListItemToServer();
   };
   return (
     <div>
