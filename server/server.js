@@ -33,8 +33,12 @@ app.get("/", function (req, res) {
 });
 
 // /multiply?value1=2&value2=10
-app.get('/multiply?value1=2&value2=10', (req, res) => {
-  let val1 = req.query.lat;
-  let val2 = req.params.value2;
+app.get('/multiply', (req, res) => {
+  let val1 = req.query.value1;
+  let val2 = req.query.value2;
   console.log("value 1", val1)
+  console.log("value 2", val2);
+  let result = val1 * val2;
+  console.log("result ", result);
+  res.send(result.toString());
 });
